@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #0078D7;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            padding: 2rem;
+        }
+        .chat-box {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+        }
+        .message {
+            margin: 0.5rem 0;
+        }
+        .message.user {
+            text-align: right;
+            color: #0078D7;
+        }
+        .message.bot {
+            text-align: left;
+            color: #444;
+        }
+        input[type="text"] {
+            width: calc(100% - 100px);
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background-color: #0078D7;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005BB5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>IBot</h1>
+    </header>
+    <div class="container">
+        <div class="chat-box" id="chatBox">
+            <div class="message bot">Hello! How can I assist you today?</div>
+        </div>
+        <div>
+            <input type="text" id="userInput" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            const chatBox = document.getElementById('chatBox');
+            const userInput = document.getElementById('userInput');
+            const userMessage = userInput.value.trim();
+
+            if (userMessage) {
+                // Add user message to chat
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user';
+                userDiv.textContent = userMessage;
+                chatBox.appendChild(userDiv);
+
+                // Clear input field
+                userInput.value = '';
+
+                // Add bot response to chat
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = 'message bot';
+                    botDiv.textContent = generateBotResponse(userMessage);
+                    chatBox.appendChild(botDiv);
+
+                    // Scroll to the bottom
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 500);
+            }
+        }
+
+        function generateBotResponse(userMessage) {
+            // Basic responses (replace with actual logic if needed)
+            const lowerCaseMessage = userMessage.toLowerCase();
+
+            if (lowerCaseMessage.includes('hello')) {
+                return 'Hi there! How can I help you?';
+            } else if (lowerCaseMessage.includes('help')) {
+                return 'Sure, let me know what you need help with.';
+            } else {
+                return 'I'm here to assist you with anything you need!';
+            }
+        }
+    </script>
+     <script>window.$zoho=window.$zoho || {};$zoho.salesiq=$zoho.salesiq||{ready:function(){}}</script><script id="zsiqscript" src="https://salesiq.zohopublic.com/widget?wc=siq2157a4c97d60f3c3a08009982b8f744b9be8b801d6052eece59d3c315eaea360" defer></script>
+</body>
+</html>
